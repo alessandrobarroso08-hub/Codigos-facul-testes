@@ -1,0 +1,25 @@
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+
+using namespace std;
+
+int main(){
+    int v[5];
+    
+    srand(time(NULL));
+    
+    //preencher o vetor
+    for(int i = 0; i < 5; i++){
+        v[i] = rand() % 50 + 1;
+    }
+    
+    //imprimir o vetor
+    for(int i = 0; i < 5; i++){
+        cout<< v[i] << " ";
+    }
+    
+    
+    
+    return 0;
+}
