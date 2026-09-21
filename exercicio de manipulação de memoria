@@ -1,0 +1,55 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+
+int main() {
+    
+    int tamanho, x = 0;
+    
+    cout<<"digita o tamanho do vetor ae! " << endl;
+    cout<<"-> ";
+    cin>>tamanho;
+    
+    
+    int *vector = new int[tamanho];
+    int *v = new int[tamanho];
+    
+    cout<<" agora digita os numero do vetor " << endl;
+    
+    for(int i = 0; i < tamanho; i++){
+        cout<<"-> ";
+        cin>> vector[i];
+            if(vector[i] % 2 == 0){
+                v[x] = vector[i];
+                x += 1;
+            }
+            else{
+                x = x;
+            }
+    }
+    
+    
+    
+    for(int i = 0; i < tamanho; i++){
+        cout<< vector[i] << " ";
+    }
+        cout << endl;
+        cout<< "quantidade de numeros pares: " << x;
+        cout<< endl;
+        
+   for(int p = 0; p < x; p++){
+       cout<< v[p] << " ";
+   } 
+    
+    delete[] vector;
+    delete[] v;
+    vector  = nullptr;
+
+    return 0;
+}
+
+
+
+
