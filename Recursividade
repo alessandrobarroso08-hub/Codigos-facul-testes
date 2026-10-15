@@ -1,0 +1,93 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+//exibe a matriz
+void Exibirmatriz (int** matriz, int n) {
+	for(int i = 0; i < n; i++){
+		for(int j = 0; j < n; j++){
+		cout<< matriz[i][j] << " ";
+		}
+	cout<< endl;
+	}
+}
+
+//propagar
+void PropRecurciva (int** matriz, int n, int linha, int coluna){
+    
+    //vê se tá fora do limite
+    if(linha < 0 || linha >= n || coluna < 0 || coluna >= n){
+        return;
+    
+}
+    
+
+    //vê se a celula é 0
+    if(matriz[linha][coluna] == 0){
+        return;
+    }
+    
+    //zera a celula
+    matriz[linha][coluna] = 0;
+    
+    PropRecurciva(matriz, n, linha + 1, coluna);
+    PropRecurciva(matriz, n, linha - 1, coluna);
+    PropRecurciva(matriz, n, linha, coluna + 1);
+    PropRecurciva(matriz, n, linha, coluna - 1);
+}
+
+
+void NumeroAleatorio (int** matriz, int n) {
+	for(int i = 0; i < n; i++){
+		for(int j = 0; j < n; j++){
+		matriz[i][j] = rand() % 2;
+		}
+	}
+}
+
+int main(){
+    int n, linha, coluna;
+    cout<< "digite o tamanho da matriz: " << endl;
+    cout<< "-> ";
+    cin>> n;
+    cout<< "digite a linha de 0 a " << n - 1 <<"." << endl;
+    cout<< "-> ";
+    cin>> linha;
+    cout<< "digite a colunade 0 a " << n - 1 << "." << endl;
+    cout<< "-> ";
+    cin>> coluna;
+    
+    
+    srand(time(NULL));
+    
+    
+    //locação da matriz
+    int** matriz = new int*[n];
+    for(int i = 0; i < n; i++) {
+        matriz[i] = new int[n];
+    }
+    
+    
+    
+    NumeroAleatorio(matriz, n);
+    
+    cout<< "matriz gerada: " << endl;
+    Exibirmatriz(matriz, n);
+    
+
+    PropRecurciva (matriz, n, linha, coluna);
+    
+    cout<< endl;
+    cout<< "aplicando recursividade: " << endl;
+    Exibirmatriz(matriz, n);
+    
+    //deleta a matriz
+    for(int i = 0; i < n; i++){
+        delete[] matriz[i];
+    }
+    delete[] matriz;
+    
+    return 0;
+}
